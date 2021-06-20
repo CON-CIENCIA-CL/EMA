@@ -3,18 +3,18 @@ from modules.MCP_3008 import mcp3008
 from modules.SHARP_PM10 import sharpPM10
 from modules.LCD_1602 import Base, Scroll, BacklightOn, BacklightOff, clear
 from modules.HDC_1080 import HDCtemp, HDChum
-# from modules.RGB_LED import ...
+from modules.RGB_LED import *
 
 # Importando librerias de Python 3
 from time import *
 import random
 
 ADC = mcp3008(0, 0) # CE0
-<<<<<<< HEAD
+
 sharpPM10 = sharpPM10(led_pin=40, pm10_pin=1, adc=ADC)
-=======
+
 sharpPM10 = sharpPM10(led_pin=21, pm10_pin=1, adc=ADC) # Obteniendo lectura de voltaje
->>>>>>> e497124efe25b655393a096e1845750310f4cb14
+
 
 def data(): # Funcion de recoleccion de datos
     BacklightOn() # Encendiendo luces del Display

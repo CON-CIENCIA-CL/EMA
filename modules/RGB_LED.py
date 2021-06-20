@@ -1,8 +1,6 @@
 import RPi.GPIO as GPIO
-import time, sys
 
 # The pins are on GPIO format
-
 redPin = 12
 greenPin = 19
 bluePin = 13
@@ -71,10 +69,7 @@ def whiteOff():
     turnOff(greenPin)
     turnOff(bluePin)
 
-# print("""Ensure the following GPIO connections: R-11, G-13, B-15
-# Colors: Red, Green, Blue, Yellow, Cyan, Magenta, and White
-# Use the format: color on/color off""")
-
+'''
 def main(cmd):
     while True:
         if cmd == "red on":
@@ -109,3 +104,4 @@ def main(cmd):
             return ("Not a valid command")
 
 main("red on")
+'''

@@ -21,19 +21,17 @@ def clear():
     display.lcd_clear()
 
 def BacklightOn():
-    display.lcd_backlight(1)                          # Make sure backlight is on / turn on
+    display.lcd_backlight(1) # Make sure backlight is on / turn on
 
 def BacklightOff():
-    display.lcd_backlight(0)                          # Turn backlight off
+    display.lcd_backlight(0) # Turn backlight off
 
 def Base(text, line):
-    # Main body of code
     # Remember that your sentences can only be 16 characters long!
     print("Enviando a pantalla ...")
     display.lcd_display_string(text, line)  # Write line of text to first line of display
 
 def Scroll(text, line):
-    # Main body of code
     print("Press CTRL + C to stop this script!")
 
     def long_string(display, string='', num_line=1, num_cols=20):
@@ -41,6 +39,7 @@ def Scroll(text, line):
         Parameters: (driver, string to print, number of line to print, number of columns of your display)
         Return: This function send to display your scrolling string.
         """
+        
         if len(string) > num_cols:
             display.lcd_display_string(string[:num_cols], num_line)
             sleep(1)
@@ -49,6 +48,7 @@ def Scroll(text, line):
                 display.lcd_display_string(text_to_print, num_line)
                 sleep(0.2)
             sleep(1)
+
         else:
             display.lcd_display_string(string, num_line)
 

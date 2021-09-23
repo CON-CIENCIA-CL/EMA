@@ -1,4 +1,5 @@
 from spidev import SpiDev
+
 class mcp3008:
     def __init__(self, bus = 0, device = 0):
         self.bus, self.device = bus, device
@@ -14,6 +15,7 @@ class mcp3008:
             return -1
         r = self.spi.xfer2([1, (8 + adc_channel) << 4, 0])
         adc_output = ((r[1] & 3) << 8) + r[2]
+        
         return adc_output
 
     def close(self):

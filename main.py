@@ -14,7 +14,6 @@ try:
 except TypeError:
     raise TypeError('[!] Could not open SPI bus; Error setting up MCP3008 class')
 
-# pm10 = sharppm10(led_pin=40, pm10_pin=1, adc=ADC)
 pm10 = SharpPM10(led_pin=21, pm10_pin=1, adc=ADC) # Obteniendo lectura de voltaje
 
 def testSharpPM10():
@@ -79,9 +78,8 @@ def init(): # Funcion que inicia a EMA
     Scroll('Leyendo datos de sensores ...', 1) # Imprimiendo scroll en la 1era linea
 
 def main(args = sys.argv[1:]):
-    # If the argument is 'test', run the test function
-    if args[0] == 'test':
-        test()
+    test()
+    print('[+] Initializing the EMA')
 
     init() # Se inicia del Display
     clear() # Se limpia el Display por si hay algo previo

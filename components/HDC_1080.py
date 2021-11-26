@@ -1,4 +1,4 @@
-from modules.setups import SDL_Pi_HDC1080
+from components.setups import SDL_Pi_HDC1080
 import sys
 import os
 

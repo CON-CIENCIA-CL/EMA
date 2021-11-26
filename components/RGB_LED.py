@@ -37,7 +37,6 @@ class RGB:
     def blueOff(self):
         self.turnOff(self.bluePin)
 
-
     def yellowOn(self):
         self.turnOn(self.redPin)
         self.turnOn(self.greenPin)
@@ -46,43 +45,6 @@ class RGB:
         self.turnOff(self.redPin)
         self.turnOff(self.greenPin)
 
-    def cyanOn(self):
-        self.turnOn(self.greenPin)
-        self.turnOn(self.bluePin)
-
-    def cyanOff(self):
-        self.turnOff(self.greenPin)
-        self.turnOff(self.bluePin)
-
-    def magentaOn(self):
-        self.turnOn(self.redPin)
-        self.turnOn(self.bluePin)
-
-    def magentaOff(self):
-        self.turnOff(self.redPin)
-        self.turnOff(self.bluePin)
-
-    def whiteOn(self):
-        self.turnOn(self.redPin)
-        self.turnOn(self.greenPin)
-        self.turnOn(self.bluePin)
-
-    def whiteOff(self):
-        self.turnOff(self.redPin)
-        self.turnOff(self.greenPin)
-        self.turnOff(self.bluePin)
-
-    def orangeOn(self):
-        self.turnOn(self.redPin)
-        self.yellowOn()
-
-    def orangeOn(self):
-        self.turnOn(self.redPin)
-        self.yellowOn()
-
-    def orangeOff(self):
-        self.turnOff(self.redPin)
-        self.yellowOff()
 
 LED = RGB()
 
@@ -94,10 +56,6 @@ while True:
     LED.yellowOn()
     sleep(1)
     LED.yellowOff()
-
-    LED.orangeOn()
-    sleep(1)
-    LED.orangeOff()
 
     LED.redOn()
     sleep(1)

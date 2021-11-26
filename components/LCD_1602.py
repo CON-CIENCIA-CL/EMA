@@ -12,7 +12,7 @@
 # Backlight: display.lcd_backlight(0) # Turn backlight off
 # Backlight: display.lcd_backlight(1) # Turn backlight on
 
-import modules.setups.lcd.settings as drivers
+import components.setups.lcd.settings as drivers
 from time import sleep
 
 display = drivers.Lcd()

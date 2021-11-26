@@ -1,27 +1,47 @@
 # Importando librerias de modulos y sensores
-from modules.MCP_3008 import mcp3008
-from modules.SHARP_PM10 import sharpPM10
-from modules.LCD_1602 import Base, Scroll, BacklightOn, BacklightOff, clear
-from modules.HDC_1080 import HDCtemp, HDChum
-from modules.RGB_LED import *
+from components.RGB_LED import *
+from components.MCP_3008 import Mcp3008
+from components.SHARP_PM10 import SharpPM10
+from components.HDC_1080 import HDCtemp, HDChum
+from components.LCD_1602 import Base, Scroll, BacklightOn, BacklightOff, clear
 
 # Importando librerias de Python 3
 from time import *
-import random
+import sys
 
-ADC = mcp3008(0, 0) # CE0
+try:
+    ADC = Mcp3008() # CE0
+except TypeError:
+    raise TypeError('[!] Could not open SPI bus; Error setting up MCP3008 class')
 
-sharpPM10 = sharpPM10(led_pin=40, pm10_pin=1, adc=ADC)
+# pm10 = sharppm10(led_pin=40, pm10_pin=1, adc=ADC)
+pm10 = SharpPM10(led_pin=21, pm10_pin=1, adc=ADC) # Obteniendo lectura de voltaje
 
-sharpPM10 = sharpPM10(led_pin=21, pm10_pin=1, adc=ADC) # Obteniendo lectura de voltaje
+def testSharpPM10():
+    if not pm10:
+        raise ValueError('[!] Could not initialize SharpPM10 class')
+    
+    print('[+] Testing the SharpPM10 class')
+    print('[+] Reading the dust value')
+    print('[*] Value :', pm10.read())
+    print('[+] Reading the dust value')
+    print('[*] Value :', pm10.readSequence())
+    print('[+] Reading the dust value')
+    print('[*] Value :', pm10.read())
+    print('[+] Reading the dust value')
+    print('[*] Value :', pm10.readSequence())
 
+    ADC.close()
+
+def test():
+    testSharpPM10()
 
 def data(): # Funcion de recoleccion de datos
     BacklightOn() # Encendiendo luces del Display
 
     clear()
-    Base(f'PM2.5: {sharpPM10.read()}', 1) # Imprimiendo densidad de polvo en el Display (1era linea)
-    Base(f'PM10: {sharpPM10.read()}', 2) # Imprimiendo densidad de polvo en el Display (2da linea)
+    Base(f'PM2.5: {pm10.read()}', 1) # Imprimiendo densidad de polvo en el Display (1era linea)
+    Base(f'PM10: {pm10.read()}', 2) # Imprimiendo densidad de polvo en el Display (2da linea)
 
     # Cambiando de textos, apagando, limpiando y encendiendo el Display
     sleep(2)
@@ -58,7 +78,11 @@ def init(): # Funcion que inicia a EMA
 
     Scroll('Leyendo datos de sensores ...', 1) # Imprimiendo scroll en la 1era linea
 
-def main(): # Funcion princiapal
+def main(args = sys.argv[1:]):
+    # If the argument is 'test', run the test function
+    if args[0] == 'test':
+        test()
+
     init() # Se inicia del Display
     clear() # Se limpia el Display por si hay algo previo
     try:
@@ -68,5 +92,6 @@ def main(): # Funcion princiapal
         clear() # Se limpia el Display
         print('\n') # Salto de linea
         exit() # El programa finaliza
+
 if __name__ == '__main__':
     main()

@@ -1,0 +1,8 @@
+wiringpi
+numpy
+config
+spidev
+RPi.GPIO
+smbus
+Adafruit_GPIO
+rich

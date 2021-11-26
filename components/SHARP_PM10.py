@@ -1,15 +1,15 @@
 import wiringpi
 from numpy import median
 
-class sharpPM10:
+class SharpPM10:
     def __init__(self, led_pin, pm10_pin, adc, sampling_time=280, delta_time=40, sleep_time=9680):
         if led_pin is None:
-            raise ValueError('led pin number is missing!')
+            raise ValueError('Led pin number is missing!')
         if pm10_pin is None:
-            raise ValueError('pm10 pin number is missing!')
+            raise ValueError('PM10 pin number is missing!')
 
         if not adc:
-            from mcp3008 import MCP3008
+            from MCP_3008 import MCP3008
             self.adc = MCP3008()
         else:
             self.adc = adc

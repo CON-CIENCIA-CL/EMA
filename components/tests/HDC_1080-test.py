@@ -22,3 +22,5 @@ class HDC:
 HDC = HDC()
 
 temperature, humidity = HDC.read(decimal=2)
+
+print(f'temp: {temperature}; hum: {humidity}')

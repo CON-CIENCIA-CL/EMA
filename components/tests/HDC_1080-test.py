@@ -21,6 +21,4 @@ class HDC:
 
 HDC = HDC()
 
-data = {
-    'Temperature': 
-}
+temperature, humidity = HDC.read(decimal=2)

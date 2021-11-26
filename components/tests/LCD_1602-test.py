@@ -12,7 +12,7 @@
 # Backlight: display.lcd_backlight(0) # Turn backlight off
 # Backlight: display.lcd_backlight(1) # Turn backlight on
 
-import components.setups.lcd.settings as drivers
+from components.setups.lcd import settings as drivers
 from time import sleep
 
 
@@ -32,7 +32,7 @@ class LCD:
     def Base(self, text, line):
         # Remember that your sentences can only be 16 characters long!
         print("Enviando a pantalla ...")
-        self.display.lcd_display_string(text, line)  # Write line of text to first line of display
+        self.display.lcd_display_string(text, line)   # Write line of text to first line of display
 
     def Scroll(self, text, line):
         print("Press CTRL + C to stop this script!")

@@ -1,6 +1,5 @@
 from components.setups import SDL_Pi_HDC1080
 import sys
-import os
 
 # Setting main path to HDC1080
 sys.path.append('./SDL_Pi_HDC1080_Python3')

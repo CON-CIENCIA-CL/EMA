@@ -1,6 +1,5 @@
 # Importando librerias de modulos y sensores
 from components.RGB_LED import *
-from components.MCP_3008 import Mcp3008
 from components.SHARP_PM10 import SharpPM10
 from components.HDC_1080 import HDCtemp, HDChum
 from components.LCD_1602 import Base, Scroll, BacklightOn, BacklightOff, clear
@@ -9,28 +8,19 @@ from components.LCD_1602 import Base, Scroll, BacklightOn, BacklightOff, clear
 from time import *
 import sys
 
-try:
-    ADC = Mcp3008() # CE0
-except TypeError:
-    raise TypeError('[!] Could not open SPI bus; Error setting up MCP3008 class')
 
-pm10 = SharpPM10(led_pin=21, pm10_pin=1, adc=ADC) # Obteniendo lectura de voltaje
+Pm10 = SharpPM10()
 
 def testSharpPM10():
-    if not pm10:
+    if not Pm10:
         raise ValueError('[!] Could not initialize SharpPM10 class')
     
     print('[+] Testing the SharpPM10 class')
     print('[+] Reading the dust value')
-    print('[*] Value :', pm10.read())
+    print('[*] Value :', Pm10.read())
     print('[+] Reading the dust value')
-    print('[*] Value :', pm10.readSequence())
-    print('[+] Reading the dust value')
-    print('[*] Value :', pm10.read())
-    print('[+] Reading the dust value')
-    print('[*] Value :', pm10.readSequence())
+    print('[*] Value :', Pm10.read())
 
-    ADC.close()
 
 def test():
     testSharpPM10()
@@ -39,8 +29,8 @@ def data(): # Funcion de recoleccion de datos
     BacklightOn() # Encendiendo luces del Display
 
     clear()
-    Base(f'PM2.5: {pm10.read()}', 1) # Imprimiendo densidad de polvo en el Display (1era linea)
-    Base(f'PM10: {pm10.read()}', 2) # Imprimiendo densidad de polvo en el Display (2da linea)
+    Base(f'PM2.5: {Pm10.read()}', 1) # Imprimiendo densidad de polvo en el Display (1era linea)
+    Base(f'PM10: {Pm10.read()}', 2) # Imprimiendo densidad de polvo en el Display (2da linea)
 
     # Cambiando de textos, apagando, limpiando y encendiendo el Display
     sleep(2)
@@ -77,7 +67,7 @@ def init(): # Funcion que inicia a EMA
 
     Scroll('Leyendo datos de sensores ...', 1) # Imprimiendo scroll en la 1era linea
 
-def main(args = sys.argv[1:]):
+def main():
     test()
     print('[+] Initializing the EMA')
 

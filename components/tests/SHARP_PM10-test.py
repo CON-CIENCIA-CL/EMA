@@ -118,3 +118,26 @@ def test():
     ADC.close()
 
 test()
+
+#! MANU'S SCRIPT
+import serial
+import time
+
+if __name__ == '__main__':
+    print("abriendo conexion serial")
+    with serial.Serial('/dev/ttyS0', 9600, timeout=1) as arduino:
+        time.sleep(0.1)
+        
+        if arduino.isOpen():
+            print("sensor {} conectado".format(arduino))
+            while True:
+                if arduino:
+                    print("esperando datos del arduino")
+                    line = arduino.readline().decode('utf-8').rstrip()
+                    print("lectura: {}".format(line))
+                    time.sleep(1)
+                    arduino.flushInput()
+                else:
+                    print("arduino no en espera")
+
+

@@ -6,31 +6,14 @@ from components.LCD_1602 import Base, Scroll, BacklightOn, BacklightOff, clear
 
 # Importando librerias de Python 3
 from time import *
-import sys
-
 
 Pm10 = SharpPM10()
-
-def testSharpPM10():
-    if not Pm10:
-        raise ValueError('[!] Could not initialize SharpPM10 class')
-    
-    print('[+] Testing the SharpPM10 class')
-    print('[+] Reading the dust value')
-    print('[*] Value :', Pm10.read())
-    print('[+] Reading the dust value')
-    print('[*] Value :', Pm10.read())
-
-
-def test():
-    testSharpPM10()
 
 def data(): # Funcion de recoleccion de datos
     BacklightOn() # Encendiendo luces del Display
 
     clear()
     Base(f'PM2.5: {Pm10.read()}', 1) # Imprimiendo densidad de polvo en el Display (1era linea)
-    Base(f'PM10: {Pm10.read()}', 2) # Imprimiendo densidad de polvo en el Display (2da linea)
 
     # Cambiando de textos, apagando, limpiando y encendiendo el Display
     sleep(2)
